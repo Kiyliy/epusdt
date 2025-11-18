@@ -18,7 +18,7 @@ services:
       - ./redis:/data
 
   epusdt:
-    image: stilleshan/epusdt
+    image: kimi7273/epusdt:latest
     restart: always
     volumes:
       - ./epusdt.conf:/app/.env

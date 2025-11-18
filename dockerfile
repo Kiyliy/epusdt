@@ -20,4 +20,4 @@ COPY --from=build /src/static /app/static
 RUN set -xe \
     && chmod +x /app/epusdt
 
-CMD /app/epusdt http start
+CMD ["/app/epusdt", "http", "start"]
