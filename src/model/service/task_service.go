@@ -113,6 +113,7 @@ func Trc20CallBack(token string, wg *sync.WaitGroup) {
 		if tradeId == "" {
 			continue
 		}
+		// 获取订单信息
 		order, err := data.GetOrderInfoByTradeId(tradeId)
 		if err != nil {
 			panic(err)
@@ -130,6 +131,11 @@ func Trc20CallBack(token string, wg *sync.WaitGroup) {
 			BlockTransactionId: transfer.Hash,
 		}
 		err = OrderProcessing(req)
+		if err != nil {
+			panic(err)
+		}
+		// 重新查询订单，获取更新后的数据（包括 BlockTransactionId）
+		order, err = data.GetOrderInfoByTradeId(tradeId)
 		if err != nil {
 			panic(err)
 		}
